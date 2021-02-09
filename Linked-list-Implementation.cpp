@@ -191,6 +191,23 @@ void search()
           
 }  
 
+
+void search1(int data)
+{
+	struct *Node temp = head;
+	int var = 0;
+	while(temp != null)
+	{
+		if(temp->data == data)
+		{
+			return var;
+		}
+		var = var+1;
+		temp = temp->next;
+	}
+ cout<<" element found at position \t"<<var<<"\n";
+}
+
 void display()
 {
    struct Node *ptr;
