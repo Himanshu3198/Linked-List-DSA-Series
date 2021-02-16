@@ -24,11 +24,11 @@ void insertion(int data){
 
 void display(){
     struct node* temp=head;
-    int count=1;
+//     int count=1;
     while(temp!=NULL){
         cout<<temp->data<<" ";
         temp=temp->next;
-        count++;
+//         count++;
     }
     cout<<"\n";
 }
