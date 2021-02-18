@@ -10,19 +10,18 @@ struct node{
     struct node*next;
 };
 // struct node* head=NULL;
-node *createList(int *arr,int n){
-   node *head, *p;
-//    int n=sizeof(arr)/sizeof(arr[0]);
-   p = head = new node;
-   head->data = arr[0];
-   head->next = NULL;
-   for (int i = 1; i < n; ++i) {
-      p->next = new node;
-      p = p->next;
-      p->data = arr[i];
-      p->next = NULL;
-   }
-return head;
+
+node *createList(int *arr, int n)
+{
+  node *head = new node(arr[0]);
+  node *tail = head;
+
+  for (int i = 1; i < n; i++)
+  {
+    tail->next = new node(arr[i]);
+    tail = tail->next;
+  }
+  return head;
 }
 
 node *mergeSortedLists(node *head1,node *head2){
