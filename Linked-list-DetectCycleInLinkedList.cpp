@@ -1,6 +1,9 @@
 //  Reverse a Linked List using c++
 //  Time Complexity O(n)  where n is no of nodes in linked list
 
+//  Reverse a Linked List using c++
+//  Time Complexity O(n)  where n is no of nodes in linked list
+
 #include <iostream>
 using namespace std;
 
@@ -14,32 +17,29 @@ struct Node
 void insert(Node *head, int value)
 {
 
-    struct Node *newnode = new Node();
+    struct Node *newnode = new Node;
 
     newnode->data = value;
     newnode->next = head;
     head = newnode;
 }
 
-// void createLoop(Node *head)
-// {
-//     head->next->next->next->next = head;
-// }
-
 bool detectCycle(Node *head)
 {
-    Node *fast = head;
-    Node *slow = head;
+    Node *fast = head,*slow=head;
+     bool iscycle=false;
+    
     while (fast->next != NULL && fast->next->next != NULL)
     {
         fast = fast->next->next;
         slow = slow->next;
         if (fast == slow)
         {
-            return true;
+            iscycle=true;
+            return iscycle;
         }
     }
-    return false;
+      return iscycle;
 }
 
 int main()
@@ -65,3 +65,4 @@ int main()
 
     return 0;
 }
+  
