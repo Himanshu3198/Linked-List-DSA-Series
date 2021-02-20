@@ -1,7 +1,4 @@
-//  Reverse a Linked List using c++
-//  Time Complexity O(n)  where n is no of nodes in linked list
-
-//  Reverse a Linked List using c++
+//  detect cycle in  a Linked List using c++
 //  Time Complexity O(n)  where n is no of nodes in linked list
 
 #include <iostream>
