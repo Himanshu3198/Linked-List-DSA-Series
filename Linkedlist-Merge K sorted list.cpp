@@ -1,6 +1,5 @@
 // Merge K sorted linked list 
 // time complexity O(nLogK)
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -12,55 +11,45 @@
  * };
  */
 class Solution {
-    
-   
-    struct compare {
-        bool operator()(const ListNode* l, const ListNode* r) {
-            return l->val > r->val;
-        }
-    };
 public:
-    ListNode* mergeKLists(vector<ListNode*>& list) {
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
         
         
+        priority_queue<int,vector<int>,greater<int>>pq;
         
-        ListNode *dummy=new ListNode(0);
+    
+             for(auto lis:lists){
+                 
+                 auto temp=lis;
+                 
+                 
+                 while(temp){
+                     
+                     pq.push(temp->val);
+                     temp=temp->next;
+                 }
+             }
         
-        ListNode *currNode=dummy;
         
-
+          ListNode *newHead=NULL,*newTail=NULL;
         
-        std::priority_queue<ListNode *,std::vector<ListNode*>,compare>heap;
-        
-        
-        int n=list.size();
-        
-        if(n==0){
-            return NULL;
-        }
-        
-        for(int i=0;i<n;i++){
+        while(!pq.empty()){
             
-            if(list[i]!=NULL){
-                   heap.push(list[i]);
-            }
-         
-        }
-        
-        while(!heap.empty()){
+            auto curr=pq.top();
             
-          
-            currNode->next=heap.top();
-             heap.pop();
-            currNode=currNode->next;
-            if(currNode->next!=NULL){
+              pq.pop();
+            
+            if(newHead==NULL){
                 
-                heap.push(currNode->next);
+                newHead=new ListNode(curr);
+                newTail=newHead;
+            }else{
+                
+                newTail->next=new ListNode(curr);
+                newTail=newTail->next;
             }
         }
         
-        currNode->next=NULL;
-        
-        return dummy->next;
+        return newHead;
     }
 };
