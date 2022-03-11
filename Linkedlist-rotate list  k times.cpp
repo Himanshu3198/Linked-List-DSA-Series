@@ -1,4 +1,3 @@
-// 61. Rotate List
 /**
  * Definition for singly-linked list.
  * struct ListNode {
