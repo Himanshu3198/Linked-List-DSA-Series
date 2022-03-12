@@ -10,29 +10,38 @@
  */
 class Solution {
 public:
+    
+//      time complexity O(n)+O(n-k)
     ListNode* rotateRight(ListNode* head, int k) {
       if(!head) return head;
         
-        int len=1; // number of nodes
-        ListNode *newH, *tail;
-        newH=tail=head;
-        
-        while(tail->next)  // get the number of nodes in the list
-        {
-            tail = tail->next;
+        int len=1;
+        ListNode *temp=head;
+//          count no of nodes
+        while(temp->next){
             len++;
+            temp=temp->next;
         }
-        tail->next = head; // circle the link
-
-        if(k %= len) 
-        {
-            for(auto i=0; i<len-k; i++) tail = tail->next; // the tail node is the (len-k)-th node (1st node is head)
+        
+        // cout<<len;  
+        // make it circular
+        temp->next=head;
+        
+//         rotate list same for multiple  so we need to rotate only remaining nodes
+//        like if k=12 and len=5 then we need not to rotate 12 time rotation of 5 and 10 will be same  
+//         so need to rotate it for 2 times
+        k=k%len;
+        k=len-k;
+        
+        while(k--){
+            temp=temp->next;
+            
         }
-        newH = tail->next; 
-        tail->next = NULL;
-        return newH;
+        
+        head=temp->next;
+        temp->next=NULL;
                 
-
+          return head;
 
     }
 };
