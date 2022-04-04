@@ -1,5 +1,3 @@
-// 1721. Swapping Nodes in a Linked List
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -13,24 +11,30 @@
 class Solution {
 public:
     ListNode* swapNodes(ListNode* head, int k) {
-     
         
-        ListNode *fast=head,*kth=NULL,*slow=head;
         
-        for(int i=1;i<k;i++){
-            fast=fast->next;
+        int len=0;
+        
+        ListNode *temp=head;
+        
+        while(temp){
+            temp=temp->next;
+            len++;
         }
-        
-        kth=fast;
-        fast=fast->next;
-        
-        while(fast){
-            fast=fast->next;
-            slow=slow->next;
+        int count=1;
+        temp=head;
+        ListNode *node1,*node2;
+        if(len==1) return head;
+        while(temp){
+            
+            if(count==k)
+               node1=temp;  
+            if(count==(len-k+1))
+                node2=temp;
+            temp=temp->next;
+            count++;
         }
-      
-        swap(slow->val,kth->val);
-        
+        swap(node1->val,node2->val);
         return head;
     }
 };
