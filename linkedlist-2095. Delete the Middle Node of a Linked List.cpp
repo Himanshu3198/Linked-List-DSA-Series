@@ -1,69 +1,32 @@
 /**
  * Definition for singly-linked list.
- * struct ListNode {
+ * public class ListNode {
  *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
  */
 class Solution {
-public:
-    ListNode* deleteMiddle(ListNode* head) {
+    public ListNode deleteMiddle(ListNode head) {
         
-        
-        ListNode *temp=head,*slow=head,*fast=head;
-        
-           if(!head){
-               return NULL;
-           }
-        
-         int count_list=0;
-        
-       
-        
-        while(temp){
-            
-            count_list++;
-            temp=temp->next;
-        }
-         if(count_list==1){
-            return NULL;
-        }
-        
-        if(count_list==2){
-             head->next=NULL;
+        ListNode prev=null,slow=head,fast=head;
+        if(head.next==null){
+            head=null;
             return head;
         }
-        temp=head;
-        while(fast->next and fast->next->next){
-            
-            slow=slow->next;
-            fast=fast->next->next;
+        if(head.next!=null && head.next.next==null){
+            head.next=null;
+            return head;
         }
-        
-        
-        
-        
-        
-        ListNode *prev=NULL;
-        
-     
-        while(temp->next!=slow){
-            
-            temp=temp->next;
+        while(fast!=null && fast.next!=null){
+            prev=slow;
+            slow=slow.next;
+            fast=fast.next.next;
         }
-        
-        if(count_list%2){
-            temp->next=slow->next;
-        }
-        else{
-            
-            slow->next=slow->next->next;
-        }
-        
-        
+        if(prev!=null && prev.next!=null && slow!=null && slow.next!=null)
+        prev.next=slow.next;
         return head;
     }
-};
+}
